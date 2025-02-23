@@ -259,11 +259,84 @@
 /* on mobile devices below 600px, change the value of '--multiplier' 
  * to adjust the values of base font size and vertical space unit.
  */
-@media screen and (max-width: 600px) {
-    :root {
-        --multiplier : .875;
+ @media screen and (max-width: 600px) {
+    .testimonial-slider__avatar {
+        width: 80%; /* Adjust width to 80% for mobile */
+        max-width: none; /* Removes any width restriction */
+        height: auto; /* Maintains aspect ratio */
+        object-fit: contain; /* Ensures full image is visible */
+        display: block; /* Prevents extra spacing issues */
+        margin: 0 auto; /* Centers the image */
+    }
+
+    .testimonial-slider__author {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        overflow: visible; /* Ensures nothing is cut */
+    }
+
+    .testimonial-slider__slide {
+        display: flex;
+        flex-direction: column; /* Ensures correct stacking */
+        align-items: center;
+        gap: 10px; /* Adds spacing */
+        overflow: visible; /* Prevents hidden edges */
     }
 }
+
+
+
+
+@media screen and (max-width: 600px) {
+    /* Force the contact-bottom to stack vertically */
+    .contact-bottom {
+      flex-direction: column !important;
+      align-items: center;
+    }
+    
+    /* Ensure every direct child column occupies full width */
+    .contact-bottom > .column {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      margin-bottom: 30px;
+    }
+    
+    /* Remove any conflicting grid classes if needed */
+    .contact-bottom > .column[class*="lg-"],
+    .contact-bottom > .column[class*="md-"],
+    .contact-bottom > .column[class*="tab-"] {
+      width: 100% !important;
+    }
+    
+    /* Optional: Remove extra margin from the last item */
+    .contact-bottom > .column:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .gallery {
+        display: grid !important; /* Force grid display */
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 columns */
+        grid-template-rows: repeat(4, 1fr) !important; /* 4 rows */
+        gap: 10px !important; /* Space between images */
+    }
+
+    .gallery-item {
+        display: block !important; /* Ensures images are displayed as block elements */
+        width: 100% !important; /* Forces width of gallery items to 100% */
+    }
+
+    .gallery-item img {
+        width: 100% !important; /* Forces the images to fill the grid cells */
+        height: 100% !important; /* Ensures the images fit inside the grid cells */
+        object-fit: cover !important; /* Ensures images cover the grid cells without distortion */
+    }
+}
+
+
 
 /* ------------------------------------------------------------------- 
  * ## grid variables
