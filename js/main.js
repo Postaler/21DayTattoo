@@ -216,35 +216,27 @@
 
    /* Swiper
     * ------------------------------------------------------ */ 
-    const ssSwiper = function() {
+   const ssSwiper = function() {
+    const mySwiper = new Swiper('.swiper-container', {
+        slidesPerView: 1, // Each slide already contains 2 images
+        spaceBetween: 20, 
+        loop: false, // Prevent extra duplicate slides
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+            768: { slidesPerView: 1 }, // Each slide still contains 2 images
+            480: { slidesPerView: 1 }  // Same behavior for small screens
+        }
+    });
+};
 
-        const mySwiper = new Swiper('.swiper-container', {
-
-            slidesPerView: 1,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                // when window width is > 400px
-                401: {
-                    slidesPerView: 1,
-                    spaceBetween: 20
-                },
-                // when window width is > 800px
-                801: {
-                    slidesPerView: 2,
-                    spaceBetween: 32
-                },
-                // when window width is > 1200px
-                1201: {
-                    slidesPerView: 2,
-                    spaceBetween: 80
-                }
-            }
-         });
-
-    }; // end ssSwiper
+ // end ssSwiper
 
 
    /* Lightbox

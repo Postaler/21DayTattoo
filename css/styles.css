@@ -75,9 +75,9 @@
 /* ------------------------------------------------------------------- 
  * ## fonts 
  * ------------------------------------------------------------------- */
- <style>
+ 
  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
- </style>
+ 
 :root {
 
     --font-1 : "Public Sans", sans-serif;
@@ -3412,11 +3412,19 @@ img.u-pull-left {
     object-fit     : cover;
     margin         : 0;
     vertical-align : bottom;
+    
 }
+
+.arina-img {
+    box-shadow: 0 0 20px 1px rgb(0, 0, 0);
+    border-radius: 1px;
+}
+
 
 .about-info__text {
     padding     : var(--vspace-3_5) 10vw var(--vspace-2) 0;
     margin-left: 35px;
+
 }
 
 .about-info__text .text-pretitle {
@@ -3457,32 +3465,34 @@ img.u-pull-left {
 /* Grid Layout: 4 Columns, 2 Rows */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-    gap: 10px; /* Reduce spacing */
-    max-width: 800px; /* Adjust width for better fit */
+    grid-template-columns: repeat(4, 1fr); /* Keep 4 columns */
+    gap: 15px; /* Maintain spacing */
+    max-width: 1200px; /* Increase max width */
+    width: 90%; /* Allow it to scale dynamically */
     margin: auto;
 }
+
 
 /* Gallery Item Styling */
 .gallery-item {
     background-color: #222; /* Slight background contrast */
     padding: 8px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Soft shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
+    border-bottom: 6px solid #222; /* Make bottom border slightly wider */
+
 }
 
 /* Image Styling */
 .gallery-item img {
-    width: 100%; /* Responsive */
-    max-width: 180px; /* Smaller images */
-    height: 220px; /* Fixed height for uniformity */
-    object-fit: cover; /* Avoids stretching */
-    border-radius: 6px;
+    width: 100%; /* Ensures images take full width of their container */
+    height: 100%; /* Keep height consistent */
+    object-fit: cover; /* Avoids distortion */
     display: block;
-    margin: 0 auto;
 }
+
 
 /* Hover Effect */
 .gallery-item:hover {
@@ -3951,66 +3961,44 @@ img.u-pull-left {
 /* ------------------------------------------------------------------- 
  * ## testimonial slider 
  * ------------------------------------------------------------------- */
+/* Original styles */
+.testimonial-slider .swiper-wrapper {
+    display: flex;
+}
+
 .testimonial-slider__slide {
-    position : relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adds space between the two images */
 }
 
-.testimonial-slider__slide:hover .testimonial-slider__avatar {
-    filter : none;
+.testimonial-slider {
+    margin-top: 50px; /* Increases space above the slider */
 }
 
-.testimonial-slider__slide:hover .testimonial-slider__cite strong {
-    color : var(--color-1);
+/* Fix: Ensure two images per slide */
+.testimonial-slider__slide {
+    width: 50%; /* Two images per slide */
 }
 
-.testimonial-slider__slide:hover .testimonial-slider__cite span {
-    color : white;
+/* Fix: Make images equal size */
+.testimonial-slider__author img {
+    width: 100%; /* Ensures responsiveness */
+    max-width: 500px; /* Adjust as needed */
+    height: 180px; /* Forces uniform height */
+    object-fit: cover; /* Ensures images keep proportions and don’t stretch */
+    border: 3px solid #222; /* Adds a white border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
 }
+    
+
 
 .testimonial-slider__author {
-    display       : inline-block;
-    min-height    : var(--vspace-2);
-    margin-bottom : var(--vspace-0_5);
-    padding-left  : var(--vspace-2_5);
-    position      : relative;
+    padding: 10px; /* Adds space inside each image container */
 }
 
-.testimonial-slider__avatar {
-    width         : var(--vspace-1_75);
-    height        : var(--vspace-1_75);
-    border-radius : 100%;
-    outline       : none;
-    position      : absolute;
-    top           : 0;
-    left          : 0;
-    filter        : grayscale(100%);
-    transition    : all 0.3s ease-in-out;
-}
-
-.testimonial-slider__cite {
-    display : block;
-}
-
-.testimonial-slider__cite strong,
-.testimonial-slider__cite span {
-    font-style : normal;
-    transition : all 0.3s ease-in-out;
-}
-
-.testimonial-slider__cite strong {
-    font-size   : calc(var(--text-size) * 0.8947);
-    font-weight : 400;
-    line-height : var(--vspace-0_75);
-    color       : white;
-}
-
-.testimonial-slider__cite span {
-    display     : block;
-    font-size   : calc(var(--text-size) * 0.7368);
-    font-weight : 300;
-    line-height : var(--vspace-0_5);
-    color       : var(--color-text-light);
-}
 
 /* ------------------------------------------------------------------- 
  * responsive:
@@ -4122,10 +4110,31 @@ img.u-pull-left {
 }
 
 .contact-bottom {
-    padding-bottom : var(--vspace-3);
-    margin-top     : var(--vspace-3);
-    border-bottom  : 1px solid var(--color-border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
 }
+
+.contact-block {
+    flex: 1;
+    max-width: 30%;
+}
+
+/* Push 'My Other Project' even more to the left */
+.contact-block:nth-child(3) {
+    flex-grow: 3; /* Increase its width more */
+    max-width: 35%; /* Give it more space */
+}
+
+/* Keep 'Say Hello' fixed in its position */
+.contact-block:last-child {
+    flex-grow: 0;
+    max-width: 20%;
+    margin-left: auto; /* Ensures it stays at the right */
+}
+
 
 .contact-bottom .text-pretitle {
     margin-bottom : var(--vspace-0_125);
